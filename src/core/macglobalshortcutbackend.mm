@@ -24,6 +24,7 @@
 #include <AppKit/NSWorkspace.h>
 #include <Foundation/NSString.h>
 #include <IOKit/hidsystem/ev_keymap.h>
+#include <ApplicationServices/ApplicationServices.h>
 
 #include <QAction>
 #include <QList>
