@@ -128,7 +128,14 @@ bool MacGlobalShortcutBackend::KeyPressed(const QKeySequence& sequence) {
 }
 
 bool MacGlobalShortcutBackend::IsAccessibilityEnabled() const {
-  return AXAPIEnabled();
+  bool accessibilityEnabled;
+  try{
+    accessibilityEnabled = AXAPIEnabled();
+  }catch(...){
+    NSDictionary *options = @{(id)kAXTrustedCheckOptionPrompt: @YES};
+    accessibilityEnabled = AXIsProcessTrustedWithOptions((CFDictionaryRef)options);
+  }
+  return accessibilityEnabled;
 }
 
 void MacGlobalShortcutBackend::ShowAccessibilityDialog() {
